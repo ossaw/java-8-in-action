@@ -76,6 +76,7 @@ public class StreamForker<T> {
             queues.forEach(q -> q.add(t));
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public <R> R get(Object key) {
             try {
