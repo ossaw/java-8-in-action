@@ -7,8 +7,8 @@ import static java.util.stream.Collectors.toSet;
 public class OptionalMain {
 
     public String getCarInsuranceName(Optional<Person> person) {
-        return person.flatMap(Person::getCar).flatMap(Car::getInsurance).map(
-                Insurance::getName).orElse("Unknown");
+        return person.flatMap(Person::getCar).flatMap(Car::getInsurance).map(Insurance::getName).orElse(
+                "Unknown");
     }
 
     public Set<String> getCarInsuranceNames(List<Person> persons) {

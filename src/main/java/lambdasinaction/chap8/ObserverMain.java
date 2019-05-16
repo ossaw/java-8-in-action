@@ -10,8 +10,7 @@ public class ObserverMain {
         f.registerObserver(new NYTimes());
         f.registerObserver(new Guardian());
         f.registerObserver(new LeMonde());
-        f.notifyObservers(
-                "The queen said her favourite book is Java 8 in Action!");
+        f.notifyObservers("The queen said her favourite book is Java 8 in Action!");
 
         Feed feedLambda = new Feed();
 

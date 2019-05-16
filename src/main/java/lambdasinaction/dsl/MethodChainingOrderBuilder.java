@@ -50,8 +50,7 @@ public class MethodChainingOrderBuilder {
         private final MethodChainingOrderBuilder builder;
         public final Trade trade = new Trade();
 
-        private TradeBuilder(MethodChainingOrderBuilder builder,
-                Trade.Type type, int quantity) {
+        private TradeBuilder(MethodChainingOrderBuilder builder, Trade.Type type, int quantity) {
             this.builder = builder;
             trade.setType(type);
             trade.setQuantity(quantity);
@@ -66,8 +65,7 @@ public class MethodChainingOrderBuilder {
         private final MethodChainingOrderBuilder builder;
         private final Trade trade;
 
-        public TradeBuilderWithStock(MethodChainingOrderBuilder builder,
-                Trade trade) {
+        public TradeBuilderWithStock(MethodChainingOrderBuilder builder, Trade trade) {
             this.builder = builder;
             this.trade = trade;
         }
@@ -83,8 +81,7 @@ public class MethodChainingOrderBuilder {
         private final Trade trade;
         private final Stock stock = new Stock();
 
-        private StockBuilder(MethodChainingOrderBuilder builder, Trade trade,
-                String symbol) {
+        private StockBuilder(MethodChainingOrderBuilder builder, Trade trade, String symbol) {
             this.builder = builder;
             this.trade = trade;
             stock.setSymbol(symbol);

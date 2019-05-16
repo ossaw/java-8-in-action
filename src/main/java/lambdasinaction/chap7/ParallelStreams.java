@@ -17,8 +17,7 @@ public class ParallelStreams {
     }
 
     public static long parallelSum(long n) {
-        return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(
-                Long::sum).get();
+        return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(Long::sum).get();
     }
 
     public static long rangedSum(long n) {
@@ -26,8 +25,7 @@ public class ParallelStreams {
     }
 
     public static long parallelRangedSum(long n) {
-        return LongStream.rangeClosed(1, n).parallel().reduce(Long::sum)
-                .getAsLong();
+        return LongStream.rangeClosed(1, n).parallel().reduce(Long::sum).getAsLong();
     }
 
     public static long sideEffectSum(long n) {

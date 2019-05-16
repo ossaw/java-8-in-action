@@ -42,8 +42,7 @@ public class ParallelStreamBenchmark {
 
     @Benchmark
     public long parallelSum() {
-        return Stream.iterate(1L, i -> i + 1).limit(N).parallel().reduce(0L,
-                Long::sum);
+        return Stream.iterate(1L, i -> i + 1).limit(N).parallel().reduce(0L, Long::sum);
     }
 
     @Benchmark

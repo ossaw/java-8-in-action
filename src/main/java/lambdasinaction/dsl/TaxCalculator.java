@@ -20,8 +20,8 @@ import java.util.function.Function;
 
 public class TaxCalculator {
 
-    public static double calculate(Order order, boolean useRegional,
-            boolean useGeneral, boolean useSurcharge) {
+    public static double calculate(Order order, boolean useRegional, boolean useGeneral,
+            boolean useSurcharge) {
         double value = order.getValue();
         if (useRegional)
             value = Tax.regional(value);
@@ -71,10 +71,8 @@ public class TaxCalculator {
 
         double value = TaxCalculator.calculate(order, true, false, true);
 
-        value = new TaxCalculator().withTaxRegional().withTaxSurcharge()
-                .calculate(order);
+        value = new TaxCalculator().withTaxRegional().withTaxSurcharge().calculate(order);
 
-        value = new TaxCalculator().with(Tax::regional).with(Tax::surcharge)
-                .calculate(order);
+        value = new TaxCalculator().with(Tax::regional).with(Tax::surcharge).calculate(order);
     }
 }

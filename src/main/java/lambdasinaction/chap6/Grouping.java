@@ -14,21 +14,14 @@ public class Grouping {
 
     public static void main(String... args) {
         System.out.println("Dishes grouped by type: " + groupDishesByType());
-        System.out.println("Dish names grouped by type: "
-                + groupDishNamesByType());
-        System.out.println("Dish tags grouped by type: "
-                + groupDishTagsByType());
-        System.out.println("Caloric dishes grouped by type: "
-                + groupCaloricDishesByType());
-        System.out.println("Dishes grouped by caloric level: "
-                + groupDishesByCaloricLevel());
-        System.out.println("Dishes grouped by type and caloric level: "
-                + groupDishedByTypeAndCaloricLevel());
+        System.out.println("Dish names grouped by type: " + groupDishNamesByType());
+        System.out.println("Dish tags grouped by type: " + groupDishTagsByType());
+        System.out.println("Caloric dishes grouped by type: " + groupCaloricDishesByType());
+        System.out.println("Dishes grouped by caloric level: " + groupDishesByCaloricLevel());
+        System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
         System.out.println("Count dishes in groups: " + countDishesInGroups());
-        System.out.println("Most caloric dishes by type: "
-                + mostCaloricDishesByType());
-        System.out.println("Most caloric dishes by type: "
-                + mostCaloricDishesByTypeWithoutOprionals());
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByType());
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOprionals());
         System.out.println("Sum calories by type: " + sumCaloriesByType());
         System.out.println("Caloric levels by type: " + caloricLevelsByType());
     }
@@ -38,8 +31,7 @@ public class Grouping {
     }
 
     private static Map<Dish.Type, List<String>> groupDishNamesByType() {
-        return menu.stream().collect(groupingBy(Dish::getType, mapping(
-                Dish::getName, toList())));
+        return menu.stream().collect(groupingBy(Dish::getType, mapping(Dish::getName, toList())));
     }
 
     private static Map<Dish.Type, Set<String>> groupDishTagsByType() {
@@ -73,8 +65,7 @@ public class Grouping {
     }
 
     private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
-        return menu.stream().collect(groupingBy(Dish::getType, groupingBy((
-                Dish dish) -> {
+        return menu.stream().collect(groupingBy(Dish::getType, groupingBy((Dish dish) -> {
             if (dish.getCalories() <= 400)
                 return CaloricLevel.DIET;
             else if (dish.getCalories() <= 700)
@@ -89,20 +80,17 @@ public class Grouping {
     }
 
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType() {
-        return menu.stream().collect(groupingBy(Dish::getType, reducing((
-                Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1
-                        : d2)));
+        return menu.stream().collect(groupingBy(Dish::getType, reducing((Dish d1, Dish d2) -> d1
+                .getCalories() > d2.getCalories() ? d1 : d2)));
     }
 
     private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOprionals() {
-        return menu.stream().collect(groupingBy(Dish::getType,
-                collectingAndThen(reducing((d1, d2) -> d1.getCalories() > d2
-                        .getCalories() ? d1 : d2), Optional::get)));
+        return menu.stream().collect(groupingBy(Dish::getType, collectingAndThen(reducing((d1, d2) -> d1
+                .getCalories() > d2.getCalories() ? d1 : d2), Optional::get)));
     }
 
     private static Map<Dish.Type, Integer> sumCaloriesByType() {
-        return menu.stream().collect(groupingBy(Dish::getType, summingInt(
-                Dish::getCalories)));
+        return menu.stream().collect(groupingBy(Dish::getType, summingInt(Dish::getCalories)));
     }
 
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {

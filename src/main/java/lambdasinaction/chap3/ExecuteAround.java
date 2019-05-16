@@ -15,23 +15,19 @@ public class ExecuteAround {
         String oneLine = processFile((BufferedReader b) -> b.readLine());
         System.out.println(oneLine);
 
-        String twoLines = processFile((BufferedReader b) -> b.readLine() + b
-                .readLine());
+        String twoLines = processFile((BufferedReader b) -> b.readLine() + b.readLine());
         System.out.println(twoLines);
 
     }
 
     public static String processFileLimited() throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(
-                "lambdasinaction/chap3/data.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("lambdasinaction/chap3/data.txt"))) {
             return br.readLine();
         }
     }
 
-    public static String processFile(BufferedReaderProcessor p)
-            throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(
-                "lambdasinaction/chap3/data.txt"))) {
+    public static String processFile(BufferedReaderProcessor p) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("lambdasinaction/chap3/data.txt"))) {
             return p.process(br);
         }
 

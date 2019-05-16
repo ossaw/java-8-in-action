@@ -6,8 +6,7 @@ import java.util.function.Predicate;
 public class LazyLists {
 
     public static void main(String[] args) {
-        MyList<Integer> l = new MyLinkedList<>(5, new MyLinkedList<>(10,
-                new Empty<Integer>()));
+        MyList<Integer> l = new MyLinkedList<>(5, new MyLinkedList<>(10, new Empty<Integer>()));
 
         System.out.println(l.head());
 
@@ -63,8 +62,7 @@ public class LazyLists {
 
         public MyList<T> filter(Predicate<T> p) {
             return isEmpty() ? this
-                    : p.test(head()) ? new MyLinkedList<>(head(), tail().filter(
-                            p)) : tail().filter(p);
+                    : p.test(head()) ? new MyLinkedList<>(head(), tail().filter(p)) : tail().filter(p);
         }
     }
 
@@ -105,8 +103,7 @@ public class LazyLists {
 
         public MyList<T> filter(Predicate<T> p) {
             return isEmpty() ? this
-                    : p.test(head()) ? new LazyList<>(head(), () -> tail()
-                            .filter(p)) : tail().filter(p);
+                    : p.test(head()) ? new LazyList<>(head(), () -> tail().filter(p)) : tail().filter(p);
         }
 
     }
@@ -116,8 +113,8 @@ public class LazyLists {
     }
 
     public static MyList<Integer> primes(MyList<Integer> numbers) {
-        return new LazyList<>(numbers.head(), () -> primes(numbers.tail()
-                .filter(n -> n % numbers.head() != 0)));
+        return new LazyList<>(numbers.head(), () -> primes(numbers.tail().filter(n -> n % numbers
+                .head() != 0)));
     }
 
     static <T> void printAll(MyList<T> numbers) {

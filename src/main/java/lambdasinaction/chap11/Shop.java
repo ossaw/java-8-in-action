@@ -17,15 +17,13 @@ public class Shop {
 
     public String getPrice(String product) {
         double price = calculatePrice(product);
-        Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code
-                .values().length)];
+        Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
         return name + ":" + price + ":" + code;
     }
 
     public double calculatePrice(String product) {
         delay();
-        return format(random.nextDouble() * product.charAt(0) + product.charAt(
-                1));
+        return format(random.nextDouble() * product.charAt(0) + product.charAt(1));
     }
 
     public String getName() {

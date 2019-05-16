@@ -8,8 +8,7 @@ public class Combinators {
         System.out.println(repeat(3, (Integer x) -> 2 * x).apply(10));
     }
 
-    static <A, B, C> Function<A, C> compose(Function<B, C> g,
-            Function<A, B> f) {
+    static <A, B, C> Function<A, C> compose(Function<B, C> g, Function<A, B> f) {
         return x -> g.apply(f.apply(x));
     }
 

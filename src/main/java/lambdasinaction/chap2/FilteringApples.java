@@ -6,8 +6,8 @@ public class FilteringApples {
 
     public static void main(String... args) {
 
-        List<Apple> inventory = Arrays.asList(new Apple(80, "green"), new Apple(
-                155, "green"), new Apple(120, "red"));
+        List<Apple> inventory = Arrays.asList(new Apple(80, "green"), new Apple(155, "green"), new Apple(120,
+                "red"));
 
         // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
         List<Apple> greenApples = filterApplesByColor(inventory, "green");
@@ -26,8 +26,7 @@ public class FilteringApples {
         System.out.println(heavyApples);
 
         // []
-        List<Apple> redAndHeavyApples = filter(inventory,
-                new AppleRedAndHeavyPredicate());
+        List<Apple> redAndHeavyApples = filter(inventory, new AppleRedAndHeavyPredicate());
         System.out.println(redAndHeavyApples);
 
         // [Apple{color='red', weight=120}]
@@ -50,8 +49,7 @@ public class FilteringApples {
         return result;
     }
 
-    public static List<Apple> filterApplesByColor(List<Apple> inventory,
-            String color) {
+    public static List<Apple> filterApplesByColor(List<Apple> inventory, String color) {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getColor().equals(color)) {
@@ -61,8 +59,7 @@ public class FilteringApples {
         return result;
     }
 
-    public static List<Apple> filterApplesByWeight(List<Apple> inventory,
-            int weight) {
+    public static List<Apple> filterApplesByWeight(List<Apple> inventory, int weight) {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getWeight() > weight) {
@@ -108,8 +105,7 @@ public class FilteringApples {
         }
 
         public String toString() {
-            return "Apple{" + "color='" + color + '\'' + ", weight=" + weight
-                    + '}';
+            return "Apple{" + "color='" + color + '\'' + ", weight=" + weight + '}';
         }
     }
 
