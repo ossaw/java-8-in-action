@@ -37,8 +37,7 @@ public class AsyncShop {
         delay();
         if (true)
             throw new RuntimeException("product not available");
-        return format(random.nextDouble() * product.charAt(0) + product.charAt(
-                1));
+        return format(random.nextDouble() * product.charAt(0) + product.charAt(1));
     }
 
 }

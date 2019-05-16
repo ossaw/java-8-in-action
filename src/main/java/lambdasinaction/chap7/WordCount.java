@@ -7,12 +7,10 @@ import java.util.stream.*;
 public class WordCount {
 
     public static final String SENTENCE = " Nel   mezzo del cammin  di nostra  vita "
-            + "mi  ritrovai in una  selva oscura"
-            + " che la  dritta via era   smarrita ";
+            + "mi  ritrovai in una  selva oscura" + " che la  dritta via era   smarrita ";
 
     public static void main(String[] args) {
-        System.out.println("Found " + countWordsIteratively(SENTENCE)
-                + " words");
+        System.out.println("Found " + countWordsIteratively(SENTENCE) + " words");
         System.out.println("Found " + countWords(SENTENCE) + " words");
     }
 
@@ -41,8 +39,8 @@ public class WordCount {
     }
 
     private static int countWords(Stream<Character> stream) {
-        WordCounter wordCounter = stream.reduce(new WordCounter(0, true),
-                WordCounter::accumulate, WordCounter::combine);
+        WordCounter wordCounter = stream.reduce(new WordCounter(0, true), WordCounter::accumulate,
+                WordCounter::combine);
         return wordCounter.getCounter();
     }
 
@@ -64,8 +62,7 @@ public class WordCount {
         }
 
         public WordCounter combine(WordCounter wordCounter) {
-            return new WordCounter(counter + wordCounter.counter,
-                    wordCounter.lastSpace);
+            return new WordCounter(counter + wordCounter.counter, wordCounter.lastSpace);
         }
 
         public int getCounter() {
@@ -73,8 +70,7 @@ public class WordCount {
         }
     }
 
-    private static class WordCounterSpliterator implements
-            Spliterator<Character> {
+    private static class WordCounterSpliterator implements Spliterator<Character> {
 
         private final String string;
         private int currentChar = 0;
@@ -95,11 +91,10 @@ public class WordCount {
             if (currentSize < 10) {
                 return null;
             }
-            for (int splitPos = currentSize / 2 + currentChar; splitPos < string
-                    .length(); splitPos++) {
+            for (int splitPos = currentSize / 2 + currentChar; splitPos < string.length(); splitPos++) {
                 if (Character.isWhitespace(string.charAt(splitPos))) {
-                    Spliterator<Character> spliterator = new WordCounterSpliterator(
-                            string.substring(currentChar, splitPos));
+                    Spliterator<Character> spliterator = new WordCounterSpliterator(string.substring(
+                            currentChar, splitPos));
                     currentChar = splitPos;
                     return spliterator;
                 }

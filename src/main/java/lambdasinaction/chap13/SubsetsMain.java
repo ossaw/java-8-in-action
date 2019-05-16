@@ -25,8 +25,7 @@ public class SubsetsMain {
         return concat(subans, subans2);
     }
 
-    public static List<List<Integer>> insertAll(Integer first,
-            List<List<Integer>> lists) {
+    public static List<List<Integer>> insertAll(Integer first, List<List<Integer>> lists) {
         List<List<Integer>> result = new ArrayList<>();
         for (List<Integer> l : lists) {
             List<Integer> copyList = new ArrayList<>();
@@ -37,8 +36,7 @@ public class SubsetsMain {
         return result;
     }
 
-    static List<List<Integer>> concat(List<List<Integer>> a,
-            List<List<Integer>> b) {
+    static List<List<Integer>> concat(List<List<Integer>> a, List<List<Integer>> b) {
         List<List<Integer>> r = new ArrayList<>(a);
         r.addAll(b);
         return r;

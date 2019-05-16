@@ -18,8 +18,7 @@ public class NumericStreams {
         System.out.println("Number of calories:" + calories);
 
         // max and OptionalInt
-        OptionalInt maxCalories = menu.stream().mapToInt(Dish::getCalories)
-                .max();
+        OptionalInt maxCalories = menu.stream().mapToInt(Dish::getCalories).max();
 
         int max;
         if (maxCalories.isPresent()) {
@@ -31,19 +30,15 @@ public class NumericStreams {
         System.out.println(max);
 
         // numeric ranges
-        IntStream evenNumbers = IntStream.rangeClosed(1, 100).filter(n -> n
-                % 2 == 0);
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100).filter(n -> n % 2 == 0);
 
         System.out.println(evenNumbers.count());
 
-        Stream<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100).boxed()
-                .flatMap(a -> IntStream.rangeClosed(a, 100).filter(b -> Math
-                        .sqrt(a * a + b * b) % 1 == 0).boxed().map(
-                                b -> new int[] { a, b, (int) Math.sqrt(a * a + b
-                                        * b) }));
+        Stream<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100).boxed().flatMap(a -> IntStream
+                .rangeClosed(a, 100).filter(b -> Math.sqrt(a * a + b * b) % 1 == 0).boxed().map(
+                        b -> new int[] { a, b, (int) Math.sqrt(a * a + b * b) }));
 
-        pythagoreanTriples.forEach(t -> System.out.println(t[0] + ", " + t[1]
-                + ", " + t[2]));
+        pythagoreanTriples.forEach(t -> System.out.println(t[0] + ", " + t[1] + ", " + t[2]));
 
     }
 

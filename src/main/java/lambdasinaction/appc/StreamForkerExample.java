@@ -17,12 +17,11 @@ public class StreamForkerExample {
     private static void processMenu() {
         Stream<Dish> menuStream = menu.stream();
 
-        StreamForker.Results results = new StreamForker<Dish>(menuStream).fork(
-                "shortMenu", s -> s.map(Dish::getName).collect(joining(", ")))
-                .fork("totalCalories", s -> s.mapToInt(Dish::getCalories).sum())
-                .fork("mostCaloricDish", s -> s.collect(reducing((d1, d2) -> d1
-                        .getCalories() > d2.getCalories() ? d1 : d2)).get())
-                .fork("dishesByType", s -> s.collect(groupingBy(Dish::getType)))
+        StreamForker.Results results = new StreamForker<Dish>(menuStream).fork("shortMenu", s -> s.map(
+                Dish::getName).collect(joining(", "))).fork("totalCalories", s -> s.mapToInt(
+                        Dish::getCalories).sum()).fork("mostCaloricDish", s -> s.collect(reducing((d1,
+                                d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)).get()).fork(
+                                        "dishesByType", s -> s.collect(groupingBy(Dish::getType)))
                 .getResults();
 
         String shortMeny = results.get("shortMenu");

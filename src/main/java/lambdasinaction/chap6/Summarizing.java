@@ -10,18 +10,13 @@ public class Summarizing {
 
     public static void main(String... args) {
         System.out.println("Nr. of dishes: " + howManyDishes());
-        System.out.println("The most caloric dish is: "
-                + findMostCaloricDish());
-        System.out.println("The most caloric dish is: "
-                + findMostCaloricDishUsingComparator());
-        System.out.println("Total calories in menu: "
-                + calculateTotalCalories());
-        System.out.println("Average calories in menu: "
-                + calculateAverageCalories());
+        System.out.println("The most caloric dish is: " + findMostCaloricDish());
+        System.out.println("The most caloric dish is: " + findMostCaloricDishUsingComparator());
+        System.out.println("Total calories in menu: " + calculateTotalCalories());
+        System.out.println("Average calories in menu: " + calculateAverageCalories());
         System.out.println("Menu statistics: " + calculateMenuStatistics());
         System.out.println("Short menu: " + getShortMenu());
-        System.out.println("Short menu comma separated: "
-                + getShortMenuCommaSeparated());
+        System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
     }
 
     private static long howManyDishes() {
@@ -29,15 +24,13 @@ public class Summarizing {
     }
 
     private static Dish findMostCaloricDish() {
-        return menu.stream().collect(reducing((d1, d2) -> d1.getCalories() > d2
-                .getCalories() ? d1 : d2)).get();
+        return menu.stream().collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2))
+                .get();
     }
 
     private static Dish findMostCaloricDishUsingComparator() {
-        Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(
-                Dish::getCalories);
-        BinaryOperator<Dish> moreCaloricOf = BinaryOperator.maxBy(
-                dishCaloriesComparator);
+        Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
+        BinaryOperator<Dish> moreCaloricOf = BinaryOperator.maxBy(dishCaloriesComparator);
         return menu.stream().collect(reducing(moreCaloricOf)).get();
     }
 

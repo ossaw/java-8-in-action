@@ -52,14 +52,14 @@ public class Main {
     }
 
     public void methodChaining() {
-        Order order = forCustomer("BigBank").buy(80).stock("IBM").on("NYSE").at(
-                125.00).sell(50).stock("GOOGLE").on("NASDAQ").at(375.00).end();
+        Order order = forCustomer("BigBank").buy(80).stock("IBM").on("NYSE").at(125.00).sell(50).stock(
+                "GOOGLE").on("NASDAQ").at(375.00).end();
 
     }
 
     public void nestedFunction() {
-        Order order = order("BigBank", buy(80, stock("IBM", on("NYSE")), at(
-                125.00)), sell(50, stock("GOOGLE", on("NASDAQ")), at(375.00)));
+        Order order = order("BigBank", buy(80, stock("IBM", on("NYSE")), at(125.00)), sell(50, stock("GOOGLE",
+                on("NASDAQ")), at(375.00)));
     }
 
     public void lambda() {

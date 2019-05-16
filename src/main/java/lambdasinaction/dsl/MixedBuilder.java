@@ -37,8 +37,7 @@ public class MixedBuilder {
         return buildTrade(consumer, Trade.Type.SELL);
     }
 
-    private static TradeBuilder buildTrade(Consumer<TradeBuilder> consumer,
-            Trade.Type buy) {
+    private static TradeBuilder buildTrade(Consumer<TradeBuilder> consumer, Trade.Type buy) {
         TradeBuilder builder = new TradeBuilder();
         builder.trade.setType(buy);
         consumer.accept(builder);

@@ -13,8 +13,7 @@ public class Currying {
         System.out.println(convertUSDtoGBP.applyAsDouble(100));
         System.out.println(convertKmtoMi.applyAsDouble(20));
 
-        DoubleUnaryOperator convertFtoC = expandedCurriedConverter(-32, 5.0 / 9,
-                0);
+        DoubleUnaryOperator convertFtoC = expandedCurriedConverter(-32, 5.0 / 9, 0);
         System.out.println(convertFtoC.applyAsDouble(98.6));
     }
 
@@ -26,8 +25,7 @@ public class Currying {
         return (double x) -> x * y + z;
     }
 
-    static DoubleUnaryOperator expandedCurriedConverter(double w, double y,
-            double z) {
+    static DoubleUnaryOperator expandedCurriedConverter(double w, double y, double z) {
         return (double x) -> (x + w) * y + z;
     }
 }

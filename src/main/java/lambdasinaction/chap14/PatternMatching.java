@@ -8,15 +8,13 @@ public class PatternMatching {
     public static void main(String[] args) {
         simplify();
 
-        Expr e = new BinOp("+", new Number(5), new BinOp("*", new Number(3),
-                new Number(4)));
+        Expr e = new BinOp("+", new Number(5), new BinOp("*", new Number(3), new Number(4)));
         Integer result = evaluate(e);
         System.out.println(e + " = " + result);
     }
 
     private static void simplify() {
-        TriFunction<String, Expr, Expr, Expr> binopcase = (opname, left,
-                right) -> {
+        TriFunction<String, Expr, Expr, Expr> binopcase = (opname, left, right) -> {
             if ("+".equals(opname)) {
                 if (left instanceof Number && ((Number) left).val == 0) {
                     return right;
@@ -50,8 +48,7 @@ public class PatternMatching {
     private static Integer evaluate(Expr e) {
         Function<Integer, Integer> numcase = val -> val;
         Supplier<Integer> defaultcase = () -> 0;
-        TriFunction<String, Expr, Expr, Integer> binopcase = (opname, left,
-                right) -> {
+        TriFunction<String, Expr, Expr, Integer> binopcase = (opname, left, right) -> {
             if ("+".equals(opname)) {
                 if (left instanceof Number && right instanceof Number) {
                     return ((Number) left).val + ((Number) right).val;
@@ -125,13 +122,11 @@ public class PatternMatching {
         R apply(S s, T t, U u);
     }
 
-    static <T> T patternMatchExpr(Expr e,
-            TriFunction<String, Expr, Expr, T> binopcase,
+    static <T> T patternMatchExpr(Expr e, TriFunction<String, Expr, Expr, T> binopcase,
             Function<Integer, T> numcase, Supplier<T> defaultcase) {
 
         if (e instanceof BinOp) {
-            return binopcase.apply(((BinOp) e).opname, ((BinOp) e).left,
-                    ((BinOp) e).right);
+            return binopcase.apply(((BinOp) e).opname, ((BinOp) e).left, ((BinOp) e).right);
         } else if (e instanceof Number) {
             return numcase.apply(((Number) e).val);
         } else {
