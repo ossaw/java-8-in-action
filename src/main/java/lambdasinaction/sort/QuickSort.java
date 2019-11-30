@@ -1,17 +1,20 @@
 package lambdasinaction.sort;
 
-import java.util.Arrays;
-import java.util.Random;
+import static lambdasinaction.sort.Util.genArr;
+import static lambdasinaction.sort.Util.isArrSorted;
 
 public class QuickSort {
-    private static final Random random = new Random();
-
     public static void main(String[] args) {
-        int[] arr = genArr(10);
-        printArr(arr);
-        sort(arr);
-        printArr(arr);
-        System.out.println(isArrSorted(arr));
+        test(20, 1000);
+    }
+
+    static void test(int arrLength, int testTime) {
+        for (int i = 0; i < testTime; i++) {
+            int[] arr = genArr(arrLength);
+            sort(arr);
+            if (!isArrSorted(arr))
+                throw new RuntimeException();
+        }
     }
 
     static void sort(int[] arr) {
@@ -27,45 +30,19 @@ public class QuickSort {
         sort(arr, p + 1, high);
     }
 
-    private static int partition(int[] arr, int low, int high) {
-        int i = low, j = high, index = arr[i];
-        while (i < j) {
-            while (i < j && arr[j] >= index)
-                j--;
-            if (i < j)
-                arr[i++] = arr[j];
-            while (i < j && arr[i] < index)
-                i++;
-            if (i < j)
-                arr[j--] = arr[i];
+    static int partition(int[] arr, int low, int high) {
+        int l = low, h = high, idx = arr[l];
+        while (l < h) {
+            while (l < h && idx <= arr[h])
+                h--;
+            if (l < h)
+                arr[l++] = arr[h];
+            while (l < h && idx > arr[l])
+                l++;
+            if (l < h)
+                arr[h--] = arr[l];
         }
-        arr[i] = index;
-        return i;
-    }
-
-    static int[] genArr(int length) {
-        if (length <= 0)
-            throw new IllegalArgumentException();
-
-        int[] result = new int[length];
-        for (int i = 0; i < result.length; i++)
-            result[i] = random.nextInt(100);
-        return result;
-    }
-
-    static boolean isArrSorted(int[] arr) {
-        if (arr == null || arr.length == 0)
-            throw new IllegalArgumentException();
-        if (arr.length == 1)
-            return true;
-
-        for (int i = 1; i < arr.length; i++)
-            if (arr[i] < arr[i - 1])
-                return false;
-        return true;
-    }
-
-    static void printArr(int[] arr) {
-        System.out.println(Arrays.toString(arr));
+        arr[l] = idx;
+        return l;
     }
 }
