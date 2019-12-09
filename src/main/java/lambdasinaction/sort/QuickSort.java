@@ -17,7 +17,7 @@ public class QuickSort {
         }
     }
 
-    static void sort(int[] arr) {
+    private static void sort(int[] arr) {
         sort(arr, 0, arr.length - 1);
     }
 
@@ -30,7 +30,7 @@ public class QuickSort {
         sort(arr, p + 1, high);
     }
 
-    static int partition(int[] arr, int low, int high) {
+    private static int partition(int[] arr, int low, int high) {
         int l = low, h = high, idx = arr[l];
         while (l < h) {
             while (l < h && idx <= arr[h])

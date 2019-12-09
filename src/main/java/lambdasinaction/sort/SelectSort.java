@@ -19,7 +19,7 @@ public class SelectSort {
     }
 
     private static void sort(int[] arr) {
-        if (arr == null || arr.length == 0)
+        if (arr == null || arr.length < 2)
             return;
 
         for (int i = 0; i < arr.length; i++) {
