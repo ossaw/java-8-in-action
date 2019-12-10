@@ -27,7 +27,8 @@ public class SelectSort {
             for (int j = i; j < arr.length; j++)
                 if (arr[minValIdx] > arr[j])
                     minValIdx = j;
-            swap(arr, minValIdx, i);
+            if (minValIdx != i)
+                swap(arr, minValIdx, i);
         }
     }
 }

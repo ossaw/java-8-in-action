@@ -5,7 +5,7 @@ import static lambdasinaction.sort.Util.isArrSorted;
 
 public class MergeSort {
     public static void main(String[] args) {
-        test(3, 1);
+        test(30, 1000);
     }
 
     private static void test(int arrLength, int testTime) {
@@ -17,7 +17,7 @@ public class MergeSort {
         }
     }
 
-    public static void sort(int[] arr) {
+    private static void sort(int[] arr) {
         int[] tmp = new int[arr.length];
         sort(arr, 0, arr.length - 1, tmp);
     }
@@ -32,20 +32,18 @@ public class MergeSort {
     }
 
     private static void merge(int[] arr, int left, int mid, int right, int[] tmp) {
-        int i = left;
-        int j = mid + 1;
-        int t = 0;
-        while (i <= mid && j <= right)
-            if (arr[i] <= arr[j])
-                tmp[t++] = arr[i++];
+        int i = 0, l = left, m = mid + 1;
+        while (l <= mid && m <= right)
+            if (arr[l] <= arr[m])
+                tmp[i++] = arr[l++];
             else
-                tmp[t++] = arr[j++];
-        while (i <= mid)
-            tmp[t++] = arr[i++];
-        while (j <= right)
-            tmp[t++] = arr[j++];
+                tmp[i++] = arr[m++];
+        while (l <= mid)
+            tmp[i++] = arr[l++];
+        while (m <= right)
+            tmp[i++] = arr[m++];
 
-        for (int k = 0; left <= right; k++)
-            arr[left++] = tmp[k];
+        for (int j = 0; left <= right; j++)
+            arr[left++] = tmp[j];
     }
 }

@@ -18,14 +18,13 @@ public class InsertSort {
     }
 
     private static void sort(int[] arr) {
-        if (arr == null || arr.length == 0)
+        if (arr == null || arr.length < 2)
             return;
         for (int i = 0; i < arr.length - 1; i++) {
             int cur = arr[i + 1];
             int sortedIdx = i;
-            while (sortedIdx >= 0 && cur < arr[sortedIdx]) {
+            while (sortedIdx >= 0 && cur < arr[sortedIdx])
                 arr[sortedIdx + 1] = arr[sortedIdx--];
-            }
             arr[sortedIdx + 1] = cur;
         }
     }
